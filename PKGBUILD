@@ -21,7 +21,7 @@ _sourcedir=$pkgname-$pkgver
 _makeopts="--directory=$_sourcedir"
 
 prepare() {
-  patch --directory="$_sourcedir" --strip=0 < terminfo.patch
+  patch --directory="$_sourcedir" --strip=0 < anysize.diff
 
   # This package provides a mechanism to provide a custom config.h. Multiple
   # configuration states are determined by the presence of two files in
