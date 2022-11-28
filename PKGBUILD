@@ -13,24 +13,25 @@ depends=(libxft)
 url=https://st.suckless.org
 source=(https://dl.suckless.org/$pkgname/$pkgname-$pkgver.tar.gz
         terminfo.patch
-        desktopentry.diff
-        anysize.diff
-        st-clipboard-0.8.3.diff
+        https://st.suckless.org/patches/desktopentry/st-desktopentry-0.8.5.diff
+        https://st.suckless.org/patches/clipboard/st-clipboard-0.8.3.diff
+        https://st.suckless.org/patches/anysize/st-anysize-0.8.4.diff
+        https://st.suckless.org/patches/xresources/st-xresources-20200604-9ba7ecf.diff
         README.terminfo.rst)
 sha256sums=('ea6832203ed02ff74182bcb8adaa9ec454c8f989e79232cb859665e2f544ab37'
             'f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
             '9c59fdeaab64e3cc2db524ab6c12147476a9792c46a217e3a5f47029a42919da'
-            '78ef0c10f45bdee6824ed0739c6f8b6a88d7aa5723e1e4f8db6ad0829c68a5fa'
             '0f5ce33953abce74a9da3088ea35bf067a9a4cfeb9fe6ea9800268ce69e436c0'
+            '3851f7919e788cc6667ffdb28ca743188e2869a15f3fc34a8c0b39108d946ef0'
+            '5be9b40d2b51761685f6503e92028a7858cc6571a8867b88612fce8a70514d5b'
             '0ebcbba881832adf9c98ce9fe7667c851d3cc3345077cb8ebe32702698665be2')
 _sourcedir=$pkgname-$pkgver
 _makeopts="--directory=$_sourcedir"
-
 prepare() {
-  patch --directory="$_sourcedir" --strip=0 < terminfo.patch
-  patch --directory="$_sourcedir" --strip=1 < desktopentry.diff
-  patch --directory="$_sourcedir" --strip=1 < st-clipboard-0.8.3.diff
-  patch --directory="$_sourcedir" --strip=1 < anysize.diff
+  patch --forward --directory="$_sourcedir" --strip=0 < terminfo.patch
+  patch --forward --directory="$_sourcedir" --strip=1 < st-desktopentry-0.8.5.diff
+  patch --forward --directory="$_sourcedir" --strip=1 < st-anysize-0.8.4.diff
+  patch --forward --directory="$_sourcedir" --strip=1 < st-xresources-20200604-9ba7ecf.diff
 
   # This package provides a mechanism to provide a custom config.h. Multiple
   # configuration states are determined by the presence of two files in
